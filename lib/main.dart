@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:you_are_the_boss/models/episode.dart';
 import 'package:you_are_the_boss/classes/list_episodes.dart';
 import 'package:you_are_the_boss/view_models/episode_view_model.dart';
+import 'package:you_are_the_boss/widgets/decision_button.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final String? episodeRef = prefs.getString('episode');
-  print("TEST episodeRef: $episodeRef");
-  Episode episode = ListEpisodes().getEpisode(episodeRef ?? "FirstEpisode");
+  Episode episode = ListEpisodes().getEpisode("FirstEpisode");
+  // Episode episode = ListEpisodes().getEpisode(episodeRef ?? "FirstEpisode");
   runApp(MyApp(episode: episode));
 }
 
@@ -26,6 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(
         title: 'La boite dont vous êtes le boss',
         episode: episode,
@@ -36,6 +42,8 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   static final EpisodeViewModel episodeViewModel = EpisodeViewModel();
+  static ScrollController scrollController = ScrollController();
+
   final Episode episode;
   final String title;
   const MyHomePage({super.key, required this.title, required this.episode});
@@ -46,6 +54,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   EpisodeViewModel episodeViewModel = MyHomePage.episodeViewModel;
+
   late Episode episode;
   @override
   void initState() {
@@ -69,10 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
     double width = (MediaQuery.of(context).size.width);
     double height = (MediaQuery.of(context).size.height);
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      //   title: Center(child: Text(widget.title)),
-      // ),
       body: Center(
           child: StreamBuilder<bool>(
         stream: episodeViewModel.isLoading,
@@ -87,7 +92,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       final episode = snapshot.data!;
-                      List decisionButtons = episode.decisionButtons;
+                      List<DecisionButton> decisionButtons =
+                          episode.decisionButtons;
+
                       return Container(
                         width: width,
                         height: height,
@@ -102,56 +109,66 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                         child: SingleChildScrollView(
+                            controller: MyHomePage.scrollController,
                             child: Column(
-                          children: [
-                            Container(
-                              color: const Color.fromRGBO(25, 49, 127, 1),
-                              width: width,
-                              height: 80,
-                              child: FittedBox(
-                                child: Center(
-                                  child: Text(episode.title,
-                                      style: const TextStyle(
-                                          fontSize: 40,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                          fontFamily: 'DancingScript')),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 24.0, horizontal: 32),
-                              child: Column(
-                                children: <Widget>[
-                                  // const SizedBox(height: 20),
-                                  Container(
-                                    constraints: const BoxConstraints(
-                                      maxWidth: 1000,
-                                    ),
-                                    // width: width,
-                                    decoration: BoxDecoration(
-                                      color: const Color.fromARGB(
-                                          255, 240, 240, 240),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 16.0, horizontal: 32),
-                                      child: Text(episode.content,
-                                          style: const TextStyle(
-                                              fontSize: 20,
-                                              // fontWeight: FontWeight.bold,
-                                              fontFamily: 'FireSansCondensed')),
+                              children: [
+                                Container(
+                                  color: const Color.fromRGBO(25, 49, 127, 1),
+                                  width: width,
+                                  height: 80,
+                                  child: FittedBox(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 2.0, horizontal: 4),
+                                        child: Text(episode.title,
+                                            style: const TextStyle(
+                                                fontSize: 40,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.orange,
+                                                fontFamily: 'DancingScript')),
+                                      ),
                                     ),
                                   ),
-                                  const SizedBox(height: 40),
-                                  ...decisionButtons,
-                                ],
-                              ),
-                            ),
-                          ],
-                        )),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 24.0, horizontal: 16),
+                                  child: Column(
+                                    children: <Widget>[
+                                      // const SizedBox(height: 20),
+                                      Container(
+                                        constraints: const BoxConstraints(
+                                          maxWidth: 1000,
+                                        ),
+                                        // width: width,
+                                        decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              255, 240, 240, 240),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 16.0, horizontal: 16),
+                                          child: Text(episode.content,
+                                              style: const TextStyle(
+                                                  fontSize: 20,
+                                                  fontFamily:
+                                                      'FireSansCondensed')),
+                                        ),
+                                      ),
+
+                                      const SizedBox(height: 40),
+                                      Column(
+                                        children: decisionButtons,
+                                      ),
+                                      // ...decisionButtons,
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            )),
                       );
                     } else if (snapshot.hasError) {
                       // Handle the error state

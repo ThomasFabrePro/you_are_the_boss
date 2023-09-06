@@ -31,9 +31,14 @@ class _DecisionButtonState extends State<DecisionButton> {
           prefs.setString('episode', widget.episodeUuid);
           Episode episode = ListEpisodes().getEpisode(widget.episodeUuid);
           MyHomePage.episodeViewModel.loadEpisode(episode);
+          MyHomePage.scrollController.animateTo(
+            0.0,
+            curve: Curves.easeOut,
+            duration: const Duration(milliseconds: 300),
+          );
         },
         child: Padding(
-          padding: const EdgeInsets.only(top: 10.0, left: 10.0),
+          padding: const EdgeInsets.only(top: 10.0, left: 10.0, right: 10),
           child: Container(
             constraints: const BoxConstraints(maxWidth: 800),
             decoration: BoxDecoration(
@@ -53,12 +58,13 @@ class _DecisionButtonState extends State<DecisionButton> {
             ),
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.all(4.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
                 child: Text(
                   widget.buttonLabel,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    fontSize: 22,
+                    fontSize: 20,
                     fontFamily: 'FireSansCondensed',
                     // fontWeight: FontWeight.bold,
                     color: Color.fromARGB(213, 0, 0, 0),
