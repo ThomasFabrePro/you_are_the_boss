@@ -95,10 +95,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           gradient: LinearGradient(
                             colors: [
                               Color.fromARGB(161, 7, 123, 138),
-                              Colors.white
+                              Color.fromARGB(159, 55, 157, 170),
                             ],
-                            begin: Alignment(1, -1),
-                            end: Alignment(-1, 1),
+                            begin: Alignment(-1, 1),
+                            end: Alignment(1, -1),
                           ),
                         ),
                         child: SingleChildScrollView(
@@ -120,10 +120,11 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(16.0),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 16.0, horizontal: 32),
                               child: Column(
                                 children: <Widget>[
-                                  const SizedBox(height: 80),
+                                  const SizedBox(height: 20),
                                   Container(
                                     constraints: const BoxConstraints(
                                       maxWidth: 1000,
@@ -136,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(16.0),
                                       child: Text(episode.content,
-                                          style: TextStyle(fontSize: 20)),
+                                          style: TextStyle(fontSize: 19)),
                                     ),
                                   ),
                                   const SizedBox(height: 40),

@@ -35,7 +35,11 @@ class _DecisionButtonState extends State<DecisionButton> {
         child: Container(
           constraints: const BoxConstraints(maxWidth: 600),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.3),
+            gradient: LinearGradient(colors: [
+              Colors.white.withOpacity(0.6),
+              Colors.white.withOpacity(0.3),
+            ]),
+            // color: Colors.white.withOpacity(0.3),
             borderRadius: BorderRadius.circular(25),
             border: Border.all(
               color: Colors.white30,
