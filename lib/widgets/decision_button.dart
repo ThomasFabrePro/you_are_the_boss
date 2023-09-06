@@ -23,15 +23,38 @@ class DecisionButton extends StatefulWidget {
 class _DecisionButtonState extends State<DecisionButton> {
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      onPressed: () async {
+    return GestureDetector(
+      onTap: () async {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('episode', widget.episodeUuid);
         Episode episode = ListEpisodes().getEpisode(widget.episodeUuid);
         MyHomePage.episodeViewModel.loadEpisode(episode);
       },
-      // tooltip: ,
-      child: Text(widget.buttonLabel),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10.0, left: 10.0),
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 600),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.3),
+            borderRadius: BorderRadius.circular(25),
+            border: Border.all(
+              color: Colors.white30,
+              width: 2,
+            ),
+          ),
+          child: Center(
+            child: Text(
+              widget.buttonLabel,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 22,
+                // fontWeight: FontWeight.bold,
+                color: Color.fromARGB(213, 0, 0, 0),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

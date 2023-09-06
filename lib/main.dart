@@ -66,12 +66,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // double width = (MediaQuery.of(context).size.width);
+    double width = (MediaQuery.of(context).size.width);
+    double height = (MediaQuery.of(context).size.height);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Center(child: Text(widget.title)),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      //   title: Center(child: Text(widget.title)),
+      // ),
       body: Center(
           child: StreamBuilder<bool>(
         stream: episodeViewModel.isLoading,
@@ -87,27 +88,65 @@ class _MyHomePageState extends State<MyHomePage> {
                     if (snapshot.hasData) {
                       final episode = snapshot.data!;
                       List decisionButtons = episode.decisionButtons;
-                      return SingleChildScrollView(
-                          child: Column(
-                        children: <Widget>[
-                          Text(
-                            episode.title,
+                      return Container(
+                        width: width,
+                        height: height,
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromARGB(161, 7, 123, 138),
+                              Colors.white
+                            ],
+                            begin: Alignment(1, -1),
+                            end: Alignment(-1, 1),
                           ),
-                          Text(
-                            episode.content,
-                          ),
-                          ...decisionButtons,
-
-                          // for (var button in episode.decisionButtons)
-                          //   DecisionButton(
-                          //     onPressed: () {
-                          //       episodeViewModel.loadEpisode(button);
-                          //     },
-                          //     // tooltip: ,
-                          //     child: Text(button.buttonLabel),
-                          //   ),
-                        ],
-                      ));
+                        ),
+                        child: SingleChildScrollView(
+                            child: Column(
+                          children: [
+                            Container(
+                              color: const Color.fromRGBO(25, 49, 127, 1),
+                              width: width,
+                              height: 80,
+                              child: FittedBox(
+                                child: Center(
+                                  child: Text(episode.title,
+                                      style: const TextStyle(
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      )),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Column(
+                                children: <Widget>[
+                                  const SizedBox(height: 80),
+                                  Container(
+                                    constraints: const BoxConstraints(
+                                      maxWidth: 1000,
+                                    ),
+                                    // width: width,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: Text(episode.content,
+                                          style: TextStyle(fontSize: 20)),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 40),
+                                  ...decisionButtons,
+                                ],
+                              ),
+                            ),
+                          ],
+                        )),
+                      );
                     } else if (snapshot.hasError) {
                       // Handle the error state
                       return Text('Error: ${snapshot.error}');
