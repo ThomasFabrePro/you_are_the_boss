@@ -18,7 +18,8 @@ Le voyage commence ici, à la croisée de la technologie et de la compassion, o�
           decisionButtons: const [
             DecisionButton(
                 episodeUuid: "SecondEpisode",
-                buttonLabel: "Go to second episode"),
+                buttonLabel:
+                    "Peu importe les problèmes que vous allez rencontrer, vous êtes prêt à les affronter !"),
           ],
         );
 }

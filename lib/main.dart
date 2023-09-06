@@ -112,32 +112,37 @@ class _MyHomePageState extends State<MyHomePage> {
                                 child: Center(
                                   child: Text(episode.title,
                                       style: const TextStyle(
-                                        fontSize: 40,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      )),
+                                          fontSize: 40,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                          fontFamily: 'DancingScript')),
                                 ),
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(
-                                  vertical: 16.0, horizontal: 32),
+                                  vertical: 24.0, horizontal: 32),
                               child: Column(
                                 children: <Widget>[
-                                  const SizedBox(height: 20),
+                                  // const SizedBox(height: 20),
                                   Container(
                                     constraints: const BoxConstraints(
                                       maxWidth: 1000,
                                     ),
                                     // width: width,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: const Color.fromARGB(
+                                          255, 240, 240, 240),
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(16.0),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 16.0, horizontal: 32),
                                       child: Text(episode.content,
-                                          style: TextStyle(fontSize: 19)),
+                                          style: const TextStyle(
+                                              fontSize: 20,
+                                              // fontWeight: FontWeight.bold,
+                                              fontFamily: 'FireSansCondensed')),
                                     ),
                                   ),
                                   const SizedBox(height: 40),
