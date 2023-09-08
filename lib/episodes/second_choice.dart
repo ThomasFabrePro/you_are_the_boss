@@ -63,7 +63,8 @@ class SecondChoiceThree extends Episode {
           sleepPoints: 60,
           content:
               """     Après l'incident du retard, vous prenez du recul pour réfléchir à la manière dont vous pouvez regagner la confiance de votre équipe. Vous réalisez que votre leadership a été entachée et que votre équipe est quelque peu surprise. Vous décidez de convoquer une réunion spéciale pour discuter de l'incident et des leçons à en tirer. Lors de cette réunion franche et honnête, vous partagez vos réflexions sur la manière dont vous pouvez améliorer votre leadership et renforcer l'esprit d'équipe. Votre équipe apprécie votre humilité et votre désir de progresser.
-                Bien que des conséquences négatives aient découlé de l'incident, cette démarche ouvre la voie à une communication plus ouverte et à un renforcement des liens au sein de l'équipe. Vous vous engagez à ce que cela ne se reproduise plus, et l'équipe est disposée à vous donner une seconde chance.""",
+
+      Bien que des conséquences négatives aient découlé de l'incident, cette démarche ouvre la voie à une communication plus ouverte et à un renforcement des liens au sein de l'équipe. Vous vous engagez à ce que cela ne se reproduise plus, et l'équipe est disposée à vous donner une seconde chance.""",
           decisionButtons: const [
             DecisionButton(
               episodeName: "ThirdChoiceSix",

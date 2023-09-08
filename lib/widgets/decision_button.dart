@@ -66,8 +66,8 @@ class _DecisionButtonState extends State<DecisionButton> {
                   style: const TextStyle(
                     fontSize: 20,
                     fontFamily: 'FireSansCondensed',
-                    // fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(213, 0, 0, 0),
+                    // color: Color.fromARGB(213, 0, 0, 0),
+                    color: Colors.white,
                   ),
                 ),
               ),

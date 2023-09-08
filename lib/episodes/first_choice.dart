@@ -28,7 +28,7 @@ class FirstChoiceOne extends Episode {
             DecisionButton(
               episodeName: "SecondChoiceTwo",
               buttonLabel:
-                  "Présenter des excuses à votre équipe et de planifier la prochaine réunion avec plus de rigueur",
+                  "Présenter des excuses à votre équipe et planifier la prochaine réunion avec plus de rigueur",
             ),
             DecisionButton(
               episodeName: "SecondChoiceThree",

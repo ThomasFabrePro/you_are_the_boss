@@ -101,8 +101,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         decoration: const BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
-                              Color.fromARGB(161, 7, 123, 138),
-                              Color.fromARGB(159, 55, 157, 170),
+                              Color.fromRGBO(47, 87, 218, 1),
+                              // Color.fromRGBO(37, 72, 185, 1),
+                              Color.fromRGBO(25, 49, 127, 1)
                             ],
                             begin: Alignment(-1, 1),
                             end: Alignment(1, -1),
@@ -112,10 +113,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             controller: MyHomePage.scrollController,
                             child: Column(
                               children: [
-                                Container(
-                                  color: const Color.fromRGBO(25, 49, 127, 1),
+                                SizedBox(
                                   width: width,
-                                  height: 80,
+                                  height: 100,
                                   child: const FittedBox(
                                     child: Center(
                                       child: Padding(
@@ -133,8 +133,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 24.0, horizontal: 16),
+                                  padding: const EdgeInsets.only(
+                                      right: 16, left: 16, bottom: 16),
                                   child: Column(
                                     children: <Widget>[
                                       // const SizedBox(height: 20),
@@ -150,8 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               BorderRadius.circular(10),
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 16.0, horizontal: 16),
+                                          padding: const EdgeInsets.all(16),
                                           child: Text(episode.content,
                                               style: const TextStyle(
                                                   fontSize: 20,
@@ -213,7 +212,7 @@ class LifeBars extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return Container(
-      constraints: const BoxConstraints(maxWidth: 900),
+      constraints: const BoxConstraints(maxWidth: 800),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -228,14 +227,14 @@ class LifeBars extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               LifeBar(
-                label: "Motivation de l'équipe",
+                label: "Motivation\nde l'équipe",
                 width: width,
                 value: teamMotivationPoints,
                 sideAlignment: true,
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          // const SizedBox(height: 20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -247,7 +246,7 @@ class LifeBars extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               LifeBar(
-                label: "Sommeil",
+                label: "\nSommeil",
                 width: width,
                 value: sleepPoints,
                 sideAlignment: false,
@@ -276,7 +275,7 @@ class LifeBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double fullBoxWidth = (width * 0.4).clamp(100, 300);
+    double fullBoxWidth = (width * 0.4).clamp(0, 300);
     double lifeValueBoxWidth = fullBoxWidth * (value ?? 100) / 100;
 
     double fullBoxHeight = (lifeValueBoxPadding * 2) + lifeValueBoxHeight;
@@ -288,7 +287,8 @@ class LifeBar extends StatelessWidget {
           padding: sideAlignment
               ? const EdgeInsets.only(left: 18.0)
               : const EdgeInsets.only(right: 18.0),
-          child: Text(label, style: const TextStyle(fontSize: 20)),
+          child: Text(label,
+              style: const TextStyle(fontSize: 20, color: Colors.white)),
         ),
         const SizedBox(height: 10),
         Stack(
@@ -301,10 +301,15 @@ class LifeBar extends StatelessWidget {
                 gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [
-                      Colors.white.withOpacity(0.6),
-                      Colors.white.withOpacity(0.3),
-                    ]),
+                    colors: sideAlignment
+                        ? [
+                            Colors.white.withOpacity(0.6),
+                            Colors.white.withOpacity(0.3),
+                          ]
+                        : [
+                            Colors.white.withOpacity(0.3),
+                            Colors.white.withOpacity(0.6),
+                          ]),
                 borderRadius: BorderRadius.circular(25),
                 border: Border.all(
                   color: Colors.white30,
@@ -323,15 +328,18 @@ class LifeBar extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: value == null
                         ? Colors.black
-                        : value! >= 75
+                        : value! > 75
                             ? Colors.green
-                            : value! >= 50
+                            : value! > 50
                                 ? Colors.yellow
-                                : value! >= 25
+                                : value! > 25
                                     ? Colors.orange
                                     : Colors.red,
                     // color: Colors.white.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(25),
+                    // border: Border(
+                    //   top: BorderSide(width: 2.0, color: Colors.black),
+                    // ),
                     border: Border.all(
                       color: Colors.white30,
                       width: 2,
