@@ -6,12 +6,12 @@ import 'package:you_are_the_boss/models/episode.dart';
 // import 'package:you_are_the_boss/view_models/episode_view_model.dart';
 
 class DecisionButton extends StatefulWidget {
-  final String episodeUuid;
+  final String episodeName;
   final String buttonLabel;
   // final EpisodeViewModel episodeViewModel;
   const DecisionButton({
     Key? key,
-    required this.episodeUuid,
+    required this.episodeName,
     required this.buttonLabel,
     // required this.episodeViewModel,
   }) : super(key: key);
@@ -28,8 +28,8 @@ class _DecisionButtonState extends State<DecisionButton> {
       child: GestureDetector(
         onTap: () async {
           final SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setString('episode', widget.episodeUuid);
-          Episode episode = ListEpisodes().getEpisode(widget.episodeUuid);
+          prefs.setString('episode', widget.episodeName);
+          Episode episode = ListEpisodes().getEpisode(widget.episodeName);
           MyHomePage.episodeViewModel.loadEpisode(episode);
           MyHomePage.scrollController.animateTo(
             0.0,

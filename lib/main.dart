@@ -12,8 +12,8 @@ void main() async {
 
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final String? episodeRef = prefs.getString('episode');
-  Episode episode = ListEpisodes().getEpisode("FirstEpisode");
-  // Episode episode = ListEpisodes().getEpisode(episodeRef ?? "FirstEpisode");
+  // Episode episode = ListEpisodes().getEpisode("FirstEpisode");
+  Episode episode = ListEpisodes().getEpisode(episodeRef ?? "FirstEpisode");
   runApp(MyApp(episode: episode));
 }
 
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   static final EpisodeViewModel episodeViewModel = EpisodeViewModel();
-  static ScrollController scrollController = ScrollController();
+  static final ScrollController scrollController = ScrollController();
 
   final Episode episode;
   final String title;
@@ -116,13 +116,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                   color: const Color.fromRGBO(25, 49, 127, 1),
                                   width: width,
                                   height: 80,
-                                  child: FittedBox(
+                                  child: const FittedBox(
                                     child: Center(
                                       child: Padding(
-                                        padding: const EdgeInsets.symmetric(
+                                        padding: EdgeInsets.symmetric(
                                             vertical: 2.0, horizontal: 4),
-                                        child: Text(episode.title,
-                                            style: const TextStyle(
+                                        child: Text("Vous Êtes Le Boss",
+                                            // child: Text(episode.title,
+                                            style: TextStyle(
                                                 fontSize: 40,
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.orange,
@@ -159,7 +160,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                         ),
                                       ),
 
-                                      const SizedBox(height: 40),
+                                      const SizedBox(height: 20),
+                                      LifeBars(
+                                        leadershipPoints:
+                                            episode.leadershipPoints,
+                                        teamMotivationPoints:
+                                            episode.teamMotivationPoints,
+                                        moneyPoints: episode.moneyPoints,
+                                        sleepPoints: episode.sleepPoints,
+                                      ),
+                                      const SizedBox(height: 20),
                                       Column(
                                         children: decisionButtons,
                                       ),
@@ -182,6 +192,157 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       )),
       // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class LifeBars extends StatelessWidget {
+  final int? leadershipPoints;
+  final int? teamMotivationPoints;
+  final int? moneyPoints;
+  final int? sleepPoints;
+  const LifeBars(
+      {super.key,
+      required this.leadershipPoints,
+      required this.teamMotivationPoints,
+      this.moneyPoints,
+      this.sleepPoints});
+
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 900),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              LifeBar(
+                label: "Leadership",
+                width: width,
+                value: leadershipPoints,
+                sideAlignment: true,
+              ),
+              const SizedBox(height: 20),
+              LifeBar(
+                label: "Motivation de l'équipe",
+                width: width,
+                value: teamMotivationPoints,
+                sideAlignment: true,
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              LifeBar(
+                label: "Finances",
+                width: width,
+                value: moneyPoints,
+                sideAlignment: false,
+              ),
+              const SizedBox(height: 20),
+              LifeBar(
+                label: "Sommeil",
+                width: width,
+                value: sleepPoints,
+                sideAlignment: false,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LifeBar extends StatelessWidget {
+  final int? value;
+  final String label;
+  final double width;
+  final bool sideAlignment;
+  final double lifeValueBoxHeight = 10;
+  final double lifeValueBoxPadding = 3;
+  const LifeBar(
+      {super.key,
+      this.value,
+      required this.label,
+      required this.width,
+      required this.sideAlignment});
+
+  @override
+  Widget build(BuildContext context) {
+    double fullBoxWidth = (width * 0.4).clamp(100, 300);
+    double lifeValueBoxWidth = fullBoxWidth * (value ?? 100) / 100;
+
+    double fullBoxHeight = (lifeValueBoxPadding * 2) + lifeValueBoxHeight;
+    return Column(
+      crossAxisAlignment:
+          sideAlignment ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+      children: [
+        Padding(
+          padding: sideAlignment
+              ? const EdgeInsets.only(left: 18.0)
+              : const EdgeInsets.only(right: 18.0),
+          child: Text(label, style: const TextStyle(fontSize: 20)),
+        ),
+        const SizedBox(height: 10),
+        Stack(
+          children: [
+            Container(
+              width: fullBoxWidth + lifeValueBoxPadding * 2,
+              height: fullBoxHeight,
+              // height: 20,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Colors.white.withOpacity(0.6),
+                      Colors.white.withOpacity(0.3),
+                    ]),
+                borderRadius: BorderRadius.circular(25),
+                border: Border.all(
+                  color: Colors.white30,
+                  width: 1,
+                ),
+              ),
+            ),
+            Positioned(
+              left: sideAlignment ? 0 : null,
+              right: sideAlignment ? null : 0,
+              child: Padding(
+                padding: const EdgeInsets.all(3),
+                child: Container(
+                  height: 10,
+                  width: lifeValueBoxWidth,
+                  decoration: BoxDecoration(
+                    color: value == null
+                        ? Colors.black
+                        : value! >= 75
+                            ? Colors.green
+                            : value! >= 50
+                                ? Colors.yellow
+                                : value! >= 25
+                                    ? Colors.orange
+                                    : Colors.red,
+                    // color: Colors.white.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(25),
+                    border: Border.all(
+                      color: Colors.white30,
+                      width: 2,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
