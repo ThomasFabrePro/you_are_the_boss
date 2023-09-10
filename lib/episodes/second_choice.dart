@@ -12,7 +12,7 @@ class SecondChoiceOne extends Episode {
               """     Vous rassemblez votre équipe dans un effort collectif pour rattraper le temps perdu. Cependant, la réunion de rattrapage se déroule dans la précipitation, ce qui affecte la qualité de la présentation. Certains membres de l'équipe expriment leur frustration quant à cette situation imprévue, chaque minute compte et votre entreprise perd déjà du temps. Bien que vous ayez réussi à couvrir les points principaux, il est clair que le manque de préparation initial a eu un impact sur la réunion et a laissé un sentiment d'insatisfaction.""",
           decisionButtons: const [
             DecisionButton(
-              episodeName: "ThridChoiceOne",
+              episodeName: "ThirdChoiceOne",
               buttonLabel:
                   "Vous décidez de travailler tard pour rattraper le temps perdu et préparer le lancement de la tablette",
             ),
@@ -149,6 +149,37 @@ class SecondChoiceSix extends Episode {
               episodeName: "ThirdChoiceThirteen",
               buttonLabel:
                   "Vous prenez un moment pour féliciter individuellement les membres de l'équipe pour leur contribution à la réunion",
+            ),
+          ],
+        );
+}
+
+class SecondChoiceSeven extends Episode {
+  SecondChoiceSeven()
+      : super(
+          leadershipPoints: 100,
+          teamMotivationPoints: 100,
+          moneyPoints: 25,
+          sleepPoints: 70,
+          content:
+              """     Vous sollicitez activement les retours d'expérience de vos collaborateurs. Vous organisez une réunion informelle au sein de l'équipe, où chacun est encouragé à partager ses commentaires et ses suggestions sur la réunion précédente. Cette démarche témoigne de votre désir de favoriser une culture d'apprentissage et d'amélioration continue au sein de la startup.
+
+      Lors de ces échanges, vos collaborateurs se montrent ouverts et constructifs, et ils partagent leurs observations avec sincérité. Les discussions sont animées, et vous prenez des notes pour vous assurer de ne rien oublier. Cependant, vous réalisez que vous avez beaucoup de suggestions à trier et à intégrer dans la présentation. Vous devrez décider quelles idées sont les plus pertinentes et comment les incorporer de manière cohérente. C'est un défi, mais vous êtes déterminé à tirer le meilleur parti des retours d'expérience de votre équipe pour la prochaine réunion.
+      
+      À présent, vous êtes confronté à une décision cruciale pour le reste de la journée. D'un côté, il y a l'opportunité de passer le reste de la journée à chercher de nouveaux investisseurs, à rechercher des financements qui pourraient accélérer la croissance de votre startup. De l'autre côté, il y a la possibilité de consacrer du temps à améliorer votre présentation grâce aux retours collectés, en les intégrant de manière réfléchie pour la rendre plus convaincante et percutante.
+
+      C'est un choix stratégique qui pourrait façonner l'avenir de votre entreprise. Chercher de nouveaux investisseurs pourrait injecter des ressources vitales, mais une présentation plus solide pourrait créer une impression durable sur ceux que vous rencontrerez.
+      """,
+          decisionButtons: const [
+            DecisionButton(
+              episodeName: "ThirdChoiceFourteen",
+              buttonLabel: "Chercher de nouveaux investisseurs",
+            ),
+            DecisionButton(
+              episodeName: "ThirdChoiceFifteen",
+              episodeNameInCaseOfFailure: "ThirdChoiceSixteen",
+              succesRate: 40,
+              buttonLabel: "Améliorer la présentation",
             ),
           ],
         );

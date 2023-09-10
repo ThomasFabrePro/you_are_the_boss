@@ -172,7 +172,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                       Column(
                                         children: decisionButtons,
                                       ),
-                                      // ...decisionButtons,
                                     ],
                                   ),
                                 ),
@@ -279,78 +278,83 @@ class LifeBar extends StatelessWidget {
     double lifeValueBoxWidth = fullBoxWidth * (value ?? 100) / 100;
 
     double fullBoxHeight = (lifeValueBoxPadding * 2) + lifeValueBoxHeight;
-    return Column(
-      crossAxisAlignment:
-          sideAlignment ? CrossAxisAlignment.start : CrossAxisAlignment.end,
-      children: [
-        Padding(
-          padding: sideAlignment
-              ? const EdgeInsets.only(left: 18.0)
-              : const EdgeInsets.only(right: 18.0),
-          child: Text(label,
-              style: const TextStyle(fontSize: 20, color: Colors.white)),
-        ),
-        const SizedBox(height: 10),
-        Stack(
-          children: [
-            Container(
-              width: fullBoxWidth + lifeValueBoxPadding * 2,
-              height: fullBoxHeight,
-              // height: 20,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: sideAlignment
-                        ? [
-                            Colors.white.withOpacity(0.6),
-                            Colors.white.withOpacity(0.3),
-                          ]
-                        : [
-                            Colors.white.withOpacity(0.3),
-                            Colors.white.withOpacity(0.6),
-                          ]),
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(
-                  color: Colors.white30,
-                  width: 1,
-                ),
+    return value == null
+        ? const SizedBox()
+        : Column(
+            crossAxisAlignment: sideAlignment
+                ? CrossAxisAlignment.start
+                : CrossAxisAlignment.end,
+            children: [
+              Padding(
+                padding: sideAlignment
+                    ? const EdgeInsets.only(left: 18.0)
+                    : const EdgeInsets.only(right: 18.0),
+                child: Text(label,
+                    style: const TextStyle(fontSize: 20, color: Colors.white)),
               ),
-            ),
-            Positioned(
-              left: sideAlignment ? 0 : null,
-              right: sideAlignment ? null : 0,
-              child: Padding(
-                padding: const EdgeInsets.all(3),
-                child: Container(
-                  height: 10,
-                  width: lifeValueBoxWidth,
-                  decoration: BoxDecoration(
-                    color: value == null
-                        ? Colors.black
-                        : value! > 75
-                            ? Colors.green
-                            : value! > 50
-                                ? Colors.yellow
-                                : value! > 25
-                                    ? Colors.orange
-                                    : Colors.red,
-                    // color: Colors.white.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(25),
-                    // border: Border(
-                    //   top: BorderSide(width: 2.0, color: Colors.black),
-                    // ),
-                    border: Border.all(
-                      color: Colors.white30,
-                      width: 2,
+              const SizedBox(height: 10),
+              Stack(
+                children: [
+                  Container(
+                    width: fullBoxWidth + lifeValueBoxPadding * 2,
+                    height: fullBoxHeight,
+                    // height: 20,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: sideAlignment
+                              ? [
+                                  Colors.white.withOpacity(0.6),
+                                  Colors.white.withOpacity(0.3),
+                                ]
+                              : [
+                                  Colors.white.withOpacity(0.3),
+                                  Colors.white.withOpacity(0.6),
+                                ]),
+                      borderRadius: BorderRadius.circular(25),
+                      border: Border.all(
+                        color: Colors.white30,
+                        width: 1,
+                      ),
                     ),
                   ),
-                ),
+                  Positioned(
+                    left: sideAlignment ? 0 : null,
+                    right: sideAlignment ? null : 0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(3),
+                      child: Container(
+                        height: 10,
+                        width: lifeValueBoxWidth,
+                        decoration: BoxDecoration(
+                          color: value == null
+                              ? Colors.black
+                              : value! > 75
+                                  ? Colors.green
+                                  : value! > 50
+                                      ? const Color.fromARGB(255, 224, 205, 34)
+                                      : value! > 25
+                                          ? const Color.fromARGB(
+                                              255, 241, 145, 1)
+                                          : const Color.fromARGB(
+                                              255, 204, 41, 29),
+                          // color: Colors.white.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(25),
+                          // border: Border(
+                          //   top: BorderSide(width: 2.0, color: Colors.black),
+                          // ),
+                          border: Border.all(
+                            color: Colors.white30,
+                            width: 2,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
-      ],
-    );
+            ],
+          );
   }
 }

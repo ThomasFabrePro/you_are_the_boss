@@ -72,3 +72,29 @@ class FirstChoiceTwo extends Episode {
           ],
         );
 }
+
+class FirstChoiceThree extends Episode {
+  FirstChoiceThree()
+      : super(
+          leadershipPoints: 100,
+          teamMotivationPoints: 100,
+          moneyPoints: 25,
+          sleepPoints: 80,
+          content:
+              """     Vous vous installez confortablement dans votre fauteuil, convaincu que quelques minutes de repos vous permettront d'aborder la réunion avec toute l'énergie nécessaire. Les yeux se ferment lentement, et vous sombrez dans un rêve étrange où des oiseaux chantent des mélodies codées et où votre tablette devient soudainement une porte vers un monde mystérieux.
+
+      Cependant, ce rêve onirique ne dure pas éternellement. Vous vous réveillez paisiblement, et réalisez que vous avez profité pleinement de cette brève pause revigorante. Vous êtes à l'heure pour la réunion, et lorsque vous entrez dans la salle, votre esprit est clair et votre énergie débordante. Vous êtes prêt à présenter votre vision avec confiance.
+
+      En entrant dans la salle de réunion, vous sentez une atmosphère positive. Vos collaborateurs vous accueillent chaleureusement, et vous commencez la présentation avec assurance. Vous parlez de la mission de la startup, de la vision pour l'avenir et des caractéristiques uniques de la tablette. Votre énergie positive et votre enthousiasme captivent l'auditoire, et la réunion se déroule sans accroc.
+
+      À la fin de la réunion, vous êtes satisfait de la façon dont tout s'est passé. Votre présentation a été un succès, et vous avez réussi à transmettre votre vision avec clarté et conviction. Cette expérience vous renforce dans l'idée que prendre un moment de repos lorsque c'est nécessaire peut avoir un impact positif sur votre performance. Vous quittez la réunion avec le sentiment d'avoir franchi une étape importante pour la startup, en ayant évité les erreurs du passé.   
+              """,
+          decisionButtons: const [
+            DecisionButton(
+              episodeName: "SecondChoiceSeven",
+              buttonLabel:
+                  "Solliciter activement les retours d'expérience de vos collaborateurs",
+            ),
+          ],
+        );
+}

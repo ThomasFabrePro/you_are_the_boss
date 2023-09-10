@@ -6,14 +6,16 @@ import 'package:you_are_the_boss/episodes/third_choice.dart';
 import 'package:you_are_the_boss/models/episode.dart';
 
 class ListEpisodes {
-  Episode getEpisode(String uuid) {
-    switch (uuid) {
+  Episode getEpisode(String episodeName) {
+    switch (episodeName) {
       case "FirstEpisode":
         return FirstEpisode();
       case "FirstChoiceOne":
         return FirstChoiceOne();
       case "FirstChoiceTwo":
         return FirstChoiceTwo();
+      case "FirstChoiceThree":
+        return FirstChoiceThree();
       //second
       case "SecondChoiceOne":
         return SecondChoiceOne();
@@ -27,6 +29,8 @@ class ListEpisodes {
         return SecondChoiceFive();
       case "SecondChoiceSix":
         return SecondChoiceSix();
+      case "SecondChoiceSeven":
+        return SecondChoiceSeven();
       //third
       case "ThirdChoiceOne":
         return ThirdChoiceOne();
@@ -54,7 +58,14 @@ class ListEpisodes {
         return ThirdChoiceTwelve();
       case "ThirdChoiceThirteen":
         return ThirdChoiceThirteen();
+      case "ThirdChoiceFourteen":
+        return ThirdChoiceFourteen();
+      case "ThirdChoiceFifteen":
+        return ThirdChoiceFifteen();
+      case "ThirdChoiceSixteen":
+        return ThirdChoiceSixteen();
       default:
+        print("🔴 $episodeName not found");
         return FirstEpisode();
     }
   }

@@ -311,3 +311,73 @@ class ThirdChoiceThirteen extends Episode {
           ],
         );
 }
+
+class ThirdChoiceFourteen extends Episode {
+  ThirdChoiceFourteen()
+      : super(
+          leadershipPoints: 100,
+          teamMotivationPoints: 100,
+          moneyPoints: 25,
+          sleepPoints: 65,
+          content:
+              """     Après avoir pesé les options qui s'offraient à vous, vous décidez de consacrer le reste de votre journée à la recherche de nouveaux investisseurs pour votre startup. Vous réalisez que le financement est crucial pour la croissance de votre entreprise naissante, et chaque moment compte. Vous commencez par passer des annonces sur les réseaux sociaux, présentant votre vision et les opportunités d'investissement. Vous utilisez vos contacts et appelez des connaissances susceptibles d'être intéressées par votre projet, partageant avec enthousiasme les réalisations récentes de votre startup. Cette démarche proactive porte ses fruits, et vous recevez plusieurs retours positifs de personnes intéressées à en savoir plus sur votre entreprise.
+
+      Au fur et à mesure que la journée avance, vous organisez également une session de réflexion interne pour définir une stratégie de recherche d'investisseurs plus ciblée. Vous identifiez des listes de partenaires potentiels, de fonds d'investissement et de business angels qui pourraient correspondre à votre secteur d'activité et à votre vision. Vous prévoyez des rendez-vous et des présentations pour les jours à venir, et vous avez le sentiment d'avancer dans la bonne direction.
+
+      Votre journée se termine par un sentiment de satisfaction, car vous avez jeté les bases d'une recherche de financement plus systématique et prometteuse. Vous êtes prêt à relever le défi de convaincre de nouveaux investisseurs de rejoindre votre aventure entrepreneuriale.""",
+          decisionButtons: const [
+            //TODO setup episodes names
+            DecisionButton(
+              episodeName: "FirstEpisode",
+              buttonLabel: "Fin",
+            ),
+          ],
+        );
+}
+
+class ThirdChoiceFifteen extends Episode {
+  ThirdChoiceFifteen()
+      : super(
+          leadershipPoints: 100,
+          teamMotivationPoints: 100,
+          moneyPoints: 25,
+          sleepPoints: 65,
+          content:
+              """     Vous décidez de consacrer le reste de la journée à l'amélioration de votre présentation grâce aux retours collectés. Vous réalisez que la manière dont vous communiquez votre vision et votre proposition de valeur est cruciale pour attirer l'attention des investisseurs et des partenaires potentiels. Vous prenez le temps d'analyser en profondeur les retours d'expérience partagés par votre équipe, triant les idées les plus pertinentes pour améliorer votre présentation.
+
+      Ensuite, vous commencez à réorganiser votre discours, en mettant l'accent sur les aspects qui ont suscité le plus d'intérêt et de réactions positives lors de la réunion précédente. Vous créez de nouveaux visuels et graphiques pour renforcer votre argumentaire et clarifier vos messages. La journée passe rapidement à mesure que vous peaufinez chaque diapositive et que vous vous exercez à la présentation.
+
+      En fin de journée, vous avez le sentiment que votre présentation a gagné en clarté et en impact. Vous avez défini un marché cible plus précis et affiné votre proposition de valeur. Bien que vous n'ayez pas encore rencontré de nouveaux investisseurs, vous êtes convaincu que votre capacité à captiver leur attention lors de futures présentations a considérablement augmenté. Vous terminez la journée avec une confiance renouvelée dans votre projet et dans votre capacité à le présenter avec succès aux investisseurs potentiels.""",
+          decisionButtons: const [
+            //TODO setup episodes names
+            DecisionButton(
+              episodeName: "FirstEpisode",
+              buttonLabel: "Fin",
+            ),
+          ],
+        );
+}
+
+class ThirdChoiceSixteen extends Episode {
+  ThirdChoiceSixteen()
+      : super(
+          leadershipPoints: 100,
+          teamMotivationPoints: 100,
+          moneyPoints: 25,
+          sleepPoints: 65,
+          content:
+              """     Vous décidez de consacrer le reste de la journée à l'amélioration de votre présentation grâce aux retours collectés. Cependant, à mesure que vous plongez dans la multitude d'idées et de suggestions recueillies, vous réalisez que la tâche est plus complexe que prévu. Les retours sont nombreux et parfois contradictoires, ce qui rend difficile la sélection des éléments à intégrer dans votre présentation.
+
+      Vous passez des heures à essayer de réorganiser votre discours, mais vous vous retrouvez rapidement submergé par la quantité d'informations. Certaines des suggestions semblent inenvisageables, tandis que d'autres sont mal retranscrites et difficilement compréhensibles. Vous commencez à ressentir de la frustration alors que le temps file.
+
+      En fin de journée, malgré vos efforts, vous avez l'impression de ne pas avoir progressé autant que vous l'auriez souhaité. Vous êtes conscient que vous devrez peut-être solliciter l'aide d'un expert en présentation ou d'un conseiller en communication pour trier et structurer efficacement les retours d'expérience. La journée se termine avec un sentiment de défi à relever, mais vous demeurez déterminé à améliorer votre présentation, même si cela demande plus de temps et d'expertise que prévu.
+          """,
+          decisionButtons: const [
+            //TODO setup episodes names
+            DecisionButton(
+              episodeName: "FirstEpisode",
+              buttonLabel: "Fin",
+            ),
+          ],
+        );
+}

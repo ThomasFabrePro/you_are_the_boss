@@ -23,7 +23,9 @@ Vos collaborateurs sont prêts et l'heure de votre première réunion ne va pas 
 """,
           decisionButtons: const [
             DecisionButton(
-                episodeName: "FirstChoiceOne",
+                episodeName: "FirstChoiceThree",
+                episodeNameInCaseOfFailure: "FirstChoiceOne",
+                succesRate: 40,
                 buttonLabel:
                     "Vous décidez de faire une sieste de 10 minutes pour commencer la réunion en pleine forme. Il faut donner l'exemple !"),
             DecisionButton(
